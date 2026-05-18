@@ -1,0 +1,60 @@
+# Compiled class files
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-directed-graph.txt
+build-number.txt
+.shelf/
+
+# Gradle
+.gradle/
+build/
+!gradle-wrapper.jar
+
+# Gradle cache and local properties
+.gradletasknamecache
+local.properties
+
+# Eclipse
+.project
+.classpath
+.settings/
+.metadata/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# VS Code
+.vscode/
+
+# OS X specific files
+.DS_Store
+Thumbs.db

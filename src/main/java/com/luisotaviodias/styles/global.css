@@ -1,0 +1,40 @@
+/* Estilizando o Topo */
+.top-container {
+  -fx-background-color: #3498db;
+  -fx-padding: 10;
+}
+
+/* Estilizando o Menu Lateral */
+.sidebar-container {
+  -fx-background-color: #ecf0f1;
+  -fx-padding: 30;
+  -fx-hgap: 10;
+}
+
+/* Estilizando o Centro */
+.center-container {
+  -fx-background-color: #ffffff;
+}
+
+/* Estilizando o Rodapé */
+.bottom-container {
+  -fx-background-color: #34495e;
+  -fx-padding: 10;
+}
+
+/* Estilizando o Título */
+.titulo-app {
+  -fx-text-fill: white;
+  -fx-font-size: 16;
+  -fx-font-weight: bold;
+}
+
+/* Botões */
+.button {
+  -fx-background-color: #2980b9;
+  -fx-text-fill: white;
+  -fx-font-size: 14;
+  -fx-padding: 10 20;
+  -fx-border-radius: 5;
+  -fx-background-radius: 5;
+}
