@@ -2,6 +2,13 @@
 .top-container {
   -fx-background-color: #3498db;
   -fx-padding: 10;
+  -fx-alignment: center;
+}
+
+/* Estilizando a Header */
+.header-text {
+  -fx-fill: rgb(255, 255, 255);
+  -fx-font: bold 18px "System";
 }
 
 /* Estilizando o Menu Lateral */
@@ -14,12 +21,19 @@
 /* Estilizando o Centro */
 .center-container {
   -fx-background-color: #ffffff;
+  -fx-padding: 30;
+  -fx-alignment: top-center;
 }
 
 /* Estilizando o Rodapé */
 .bottom-container {
   -fx-background-color: #34495e;
   -fx-padding: 10;
+}
+
+.footer-text {
+  -fx-fill: rgb(255, 255, 255);
+  -fx-font: italic 12px "System";
 }
 
 /* Estilizando o Título */
@@ -35,6 +49,22 @@
   -fx-text-fill: white;
   -fx-font-size: 14;
   -fx-padding: 10 20;
+  -fx-border-radius: 5;
+  -fx-background-radius: 5;
+}
+
+.button:hover {
+  -fx-background-color: #3498db;
+  -fx-cursor: hand;
+  -fx-transition: background-color 0.3s ease;
+}
+
+/* Inputs */
+.text-field {
+  -fx-background-color: #ecf0f1;
+  -fx-border-color: #77a9ca;
+  -fx-font-size: 14;
+  -fx-padding: 10;
   -fx-border-radius: 5;
   -fx-background-radius: 5;
 }
