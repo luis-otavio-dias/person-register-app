@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.geometry.HPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -30,7 +32,13 @@ public class App extends Application {
             BorderPane root = new BorderPane();
 
             // Container para a Header
+            String headerText = "Cadastro de Pessoas";
             HBox top = new HBox(10);
+            top.setPadding(new Insets(10));
+            top.setAlignment(Pos.CENTER);
+            Text header = new Text(headerText);
+            header.getStyleClass().add("header-text");
+            top.getChildren().add(header);
             top.getStyleClass().add("top-container");
             root.setTop(top);
 
@@ -61,6 +69,7 @@ public class App extends Application {
             center.getStyleClass().add("center-container");
 
             GridPane buttonGrid = new GridPane();
+            buttonGrid.setAlignment(Pos.CENTER);
 
             TextField nameField = new TextField();
             nameField.getStyleClass().add("text-field");
@@ -95,6 +104,9 @@ public class App extends Application {
             buttonGrid.setHgap(10);
             buttonGrid.add(submitButton, 1, 0);
             buttonGrid.add(clearButton, 0, 0);
+
+            GridPane.setHalignment(clearButton, HPos.CENTER);
+            GridPane.setHalignment(submitButton, HPos.CENTER);
 
             center.getChildren().addAll(
                     new Text("Nome:"),
@@ -180,9 +192,14 @@ public class App extends Application {
                 telefoneField.clear();
             });
 
-            btnCadastro.setOnAction(e -> root.setCenter(center));
+            btnCadastro.setOnAction(e -> {
+                header.setText("Cadastro de Pessoas");
+                root.setCenter(center);
+            });
+
             btnRelatorios.setOnAction(e -> {
                 refreshTable.run();
+                header.setText("Listagem de Cadastros");
                 root.setCenter(listContainer);
             });
 
@@ -191,6 +208,12 @@ public class App extends Application {
             // Container para Footer
             HBox bottom = new HBox();
             bottom.getStyleClass().add("bottom-container");
+            bottom.setPadding(new Insets(10));
+            bottom.setAlignment(Pos.CENTER);
+            Text footer = new Text("Desenvolvido por Luis Otávio Dias");
+            footer.getStyleClass().add("footer-text");
+            bottom.getChildren().add(footer);
+
             root.setBottom(bottom);
 
             var title = "Sistema de Cadastro de Pessoas";
