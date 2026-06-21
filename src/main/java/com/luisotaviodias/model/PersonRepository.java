@@ -1,4 +1,4 @@
-package com.luisotaviodias;
+package com.luisotaviodias.model;
 
 import java.util.ArrayList;
 import java.util.List;
