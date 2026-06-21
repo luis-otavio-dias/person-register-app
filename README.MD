@@ -2,13 +2,11 @@
 
 ## Sobre o projeto
 
-Este projeto é uma aplicação Java desktop que demonstra um sistema simples de cadastro de pessoas usando JavaFX para a interface gráfica e um repositório em memória para armazenamento temporário.
-
-Projeto desenvolvido como trabalho prático para a disciplina de Linguagens Comerciais, com o objetivo de servir como exemplo prático para: programação orientada a objetos, uso de JavaFX, validação básica de dados e organização de uma pequena aplicação modular em Java.
+Este projeto e uma aplicacao Java desktop com JavaFX para cadastro de pessoas. A arquitetura foi reorganizada em MVC, mantendo as funcionalidades existentes: captura de dados do formulario, armazenamento em memoria e exibicao em TableView.
 
 ## Estrutura do projeto
 
-```
+```text
 .
 ├── pom.xml
 ├── README.MD
@@ -17,87 +15,41 @@ Projeto desenvolvido como trabalho prático para a disciplina de Linguagens Come
 		└── java/
 			├── module-info.java
 			└── com/luisotaviodias/
-				├── App.java
-				├── Person.java
-				├── PersonRepository.java
-				├── SystemInfo.java
-				└── styles/
-					└── global.css
+				├── Main.java
+				├── controller/
+				│   └── PersonController.java
+				├── model/
+				│   ├── Person.java
+				│   └── PersonRepository.java
+				├── styles/
+				│   └── global.css
+				└── view/
+					└── PersonView.java
 ```
 
-## Como funciona
+## Organizacao MVC
 
-A aplicação abre uma janela JavaFX com um formulário para cadastro (nome, CPF, email, telefone) e uma tabela para listar os cadastros. O armazenamento é feito em memória por `PersonRepository` — não há persistência em banco de dados.
+- model: `Person` e `PersonRepository`.
+- view: `PersonView` concentra construcao da interface, Scene e Stage.
+- controller: `PersonController` controla eventos de botoes e faz a ponte entre view e model.
+- pacote default do projeto: contem apenas `Main.java`.
 
-Principais fluxos:
+## Funcionalidades mantidas
 
-- Preencher os campos e clicar em "Cadastrar" para adicionar um registro.
-- A aplicação valida campos obrigatórios (`nome` e `cpf`) e impede CPF duplicado.
-- A guia "Relatórios" mostra a listagem atual dos cadastros.
+- Cadastro com campos nome, CPF, email e telefone.
+- Validacao de nome/CPF obrigatorios.
+- Bloqueio de CPF duplicado.
+- Exibicao dos registros em TableView na area de relatorios.
+- Armazenamento em memoria.
 
-## Principais classes
-
-- `com.luisotaviodias.App` — ponto de entrada e definição da interface JavaFX.
-- `com.luisotaviodias.Person` — modelo de domínio que representa uma pessoa.
-- `com.luisotaviodias.PersonRepository` — repositório em memória para salvar/listar pessoas.
-- `com.luisotaviodias.SystemInfo` — utilitários e informações do sistema.
-- `src/main/java/com/luisotaviodias/styles/global.css` — estilos para a interface JavaFX.
-
-## Dependências e modularidade
-
-O projeto usa Maven e é modularizado (`module-info.java`) com o módulo `com.luisotaviodias`. A dependência principal é `org.openjfx:javafx-controls`.
-
-Veja `[pom.xml](pom.xml)` para detalhes do build e do plugin `javafx-maven-plugin` configurado para execução.
-
-## Como compilar e executar
-
-Recomendado: use o plugin Maven para JavaFX (já incluído no `pom.xml`).
-
-Linux / macOS (com Maven instalado):
+## Como executar
 
 ```bash
 mvn clean package
 mvn javafx:run
 ```
 
-Windows (Prompt/PowerShell):
+## Observacoes
 
-```powershell
-mvn clean package
-mvn javafx:run
-```
-
-Observação: o comando `mvn javafx:run` usa a configuração do `javafx-maven-plugin` e é a forma mais direta de executar a aplicação durante o desenvolvimento.
-
-Executando a aplicação empacotada (opcional):
-
-1. Gere o JAR:
-
-```bash
-mvn -DskipTests package
-```
-
-2. Execute com o JavaFX SDK no `module-path` (substitua `/path/to/javafx/lib` pelo caminho do seu SDK JavaFX):
-
-```bash
-java --module-path /path/to/javafx/lib --add-modules javafx.controls,javafx.graphics -m com.luisotaviodias/com.luisotaviodias.App
-```
-
-O uso do `--module-path` é necessário quando executar o JAR fora do plugin Maven, pois o JavaFX não faz parte da JDK padrão.
-
-## Tratamento de validações
-
-A aplicação valida presença de `nome` e `cpf` no formulário e exibe diálogos de alerta quando há campos incompletos ou CPF duplicado. Exceções internas são capturadas no `start()` e logadas via `printStackTrace()`.
-
-## Exemplo de comportamento esperado
-
-- Ao abrir, a janela mostra o formulário de cadastro.
-- Preenchendo `Nome` e `CPF` corretamente e clicando em `Cadastrar` a pessoa é adicionada e uma mensagem de confirmação é exibida.
-- Tentar cadastrar com CPF já existente mostra um alerta informando duplicidade.
-
-## Cobertura dos requisitos do projeto
-
-- Interface gráfica com JavaFX: atendido (`App.java`, `global.css`).
-- Estrutura modular (`module-info.java`): atendido.
-- Repositório em memória para cadastros: atendido (`PersonRepository.java`).
-- Validações básicas e mensagens de alerta: atendido.
+- O modulo abre `com.luisotaviodias.view` para inicializacao JavaFX.
+- O modulo abre `com.luisotaviodias.model` para binding reflexivo da TableView (`PropertyValueFactory`).
