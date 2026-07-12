@@ -1,6 +1,7 @@
 module com.luisotaviodias {
     requires transitive javafx.graphics;
     requires javafx.controls;
+    requires java.sql;
 
     exports com.luisotaviodias;
 
