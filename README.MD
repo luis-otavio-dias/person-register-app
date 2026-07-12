@@ -2,7 +2,7 @@
 
 ## Sobre o projeto
 
-Este projeto e uma aplicacao Java desktop com JavaFX para cadastro de pessoas. A arquitetura foi reorganizada em MVC, mantendo as funcionalidades existentes: captura de dados do formulario, armazenamento em memoria e exibicao em TableView.
+Este projeto e uma aplicacao Java desktop com JavaFX para cadastro de pessoas. A arquitetura foi reorganizada em MVC e agora conta com persistencia em banco de dados H2 atraves de JDBC, substituindo o armazenamento em memoria. O sistema inclui captura de dados do formulario, validacoes e exibicao em TableView.
 
 ## Estrutura do projeto
 
@@ -19,6 +19,7 @@ Este projeto e uma aplicacao Java desktop com JavaFX para cadastro de pessoas. A
 				├── controller/
 				│   └── PersonController.java
 				├── model/
+				│   ├── ConexaoBD.java
 				│   ├── Person.java
 				│   └── PersonRepository.java
 				├── styles/
@@ -29,18 +30,18 @@ Este projeto e uma aplicacao Java desktop com JavaFX para cadastro de pessoas. A
 
 ## Organizacao MVC
 
-- model: `Person` e `PersonRepository`.
+- model: `Person`, `PersonRepository` (DAO) e `ConexaoBD` (Fabrica de conexoes JDBC e DDL do H2).
 - view: `PersonView` concentra construcao da interface, Scene e Stage.
 - controller: `PersonController` controla eventos de botoes e faz a ponte entre view e model.
 - pacote default do projeto: contem apenas `Main.java`.
 
-## Funcionalidades mantidas
+## Funcionalidades
 
 - Cadastro com campos nome, CPF, email e telefone.
 - Validacao de nome/CPF obrigatorios.
-- Bloqueio de CPF duplicado.
+- Bloqueio de CPF duplicado, buscando direto no banco de dados.
 - Exibicao dos registros em TableView na area de relatorios.
-- Armazenamento em memoria.
+- Persistencia de dados com banco de dados embutido (H2) via API JDBC e instrucoes SQL (DML e DDL).
 
 ## Como executar
 
@@ -53,3 +54,4 @@ mvn javafx:run
 
 - O modulo abre `com.luisotaviodias.view` para inicializacao JavaFX.
 - O modulo abre `com.luisotaviodias.model` para binding reflexivo da TableView (`PropertyValueFactory`).
+- O modulo requer `java.sql` para suportar as operacoes de banco de dados via JDBC.
